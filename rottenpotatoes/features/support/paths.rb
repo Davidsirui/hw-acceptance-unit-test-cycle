@@ -24,9 +24,13 @@ module NavigationHelpers
     #   search_similar_movies_path($1)
       
     when /^the (RottenPotatoes )?home\s?page$/ then '/movies'
-    when /^the edit page for "(.*)"$/i then edit_movie_path(Movie.find_by_title($1))
+    
+    when /^the edit page for "(.*)"$/i
+      edit_movie_path(Movie.where(title: $1).first)
     when /^the details page for "(.*)"$/i then movie_path(Movie.find_by_title($1))
-    when /^the Similar Movies page for "(.*)"$/ then search_directors_path(Movie.find_by_title($1))
+    when /^the Similar Movies page for "(.*)"$/
+      search_directors_path(Movie.where(title: $1).first)
+
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
