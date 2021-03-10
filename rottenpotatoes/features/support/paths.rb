@@ -25,10 +25,10 @@ module NavigationHelpers
       
     when /^the (RottenPotatoes )?home\s?page$/ then '/movies'
     
-    when /^the edit page for "(.*)"$/i
+    when /^the edit page for "(.*)"$/i then
       edit_movie_path(Movie.where(title: $1).first)
     when /^the details page for "(.*)"$/i then movie_path(Movie.find_by_title($1))
-    when /^the Similar Movies page for "(.*)"$/
+    when /^the Similar Movies page for "(.*)"$/ then
       search_directors_path(Movie.where(title: $1).first)
 
 
