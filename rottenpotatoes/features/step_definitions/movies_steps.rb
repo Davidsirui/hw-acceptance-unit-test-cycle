@@ -4,6 +4,13 @@ Given /the following movies exist/ do |movies_table|
   end
 end
 
+Then /(.*) seed movies should exist/ do | n_seeds |
+  Movie.count.should be n_seeds.to_i
+end
+
+When /^I press "(.*)" button/ do |button|
+  click_button button
+end
 
 Then /^the director of "(.*)" should be "(.*)"/ do |title, director|
   movie = Movie.where(title: title).first
